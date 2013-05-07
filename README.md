@@ -10,16 +10,13 @@ something like:
     stream = when(lambda event: event['state'] == "warning",
                   email("me@mycompany.com"))
 
-I'm currently experimenting with using Tornado as the underlying IO
-loop.  It doesn't have great support for UDP but that is only one
-small part of this application that it doesn't really matter right
-now.
+I'm currently experimenting with using eventlet as the underlying IO
+loop.  The goal for this project is to experiment with integrating
+into OpenStack for light-weight cluster monitoring.
 
 For development purposes I've implemented the most rudimentary
 protocol possible: JSON.  I plan to eventually add Protocol Buffers
 (and maybe Thrift) support in the future.
-
-I'm developing on Python 3.3 because it's awesome.
 
 
 # TODO #
@@ -31,4 +28,3 @@ I'm developing on Python 3.3 because it's awesome.
 - stream processing
 - event storage / querying
 - web socket support
-- packaging

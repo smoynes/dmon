@@ -4,6 +4,8 @@ import eventlet
 
 import server
 
+from index import Index, ExpiryTask
+
 
 parser = argparse.ArgumentParser(description="dmon distributed cluster monitor")
 
@@ -19,6 +21,11 @@ parser.add_argument("--threadpool_size", type=int, default=1000,
 
 def main():
     args = parser.parse_args()
+
+    index = Index.factory()
+    expiry_task = ExpiryTask(index)
+    expiry_task.schedule()
+
     eventlet.spawn(
         server.start_datagram_server(args.max_connections,
                                      args.udp_host,

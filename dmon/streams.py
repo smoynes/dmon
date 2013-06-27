@@ -2,7 +2,7 @@ import eventlet
 
 from functools import wraps
 
-from .index import Index
+from index import Index
 
 __all__ = ["average", "send", "stream", "printer", "when", "index"]
 
@@ -18,6 +18,7 @@ def stream(func):
 
 def send(event, *targets):
     for target in targets:
+        print target
         eventlet.spawn_n(target.send, event)
 
 
